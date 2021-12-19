@@ -1,0 +1,41 @@
+﻿<Window x:Class="WpfApplDemo2018.View.WindowEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" 
+        Title="Сотрудники" Height="300" Width="550">
+    
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Background="#FFE4E0E0">
+            <Button Style="{StaticResource ButtonMenu}" Content="Добавить"
+                    Command="{Binding AddPerson}"/>
+            <Button Style="{StaticResource ButtonMenu}" Content="Редактировать"  
+                    Command="{Binding EditPerson}"/>
+            <Button Style="{StaticResource ButtonMenu}" Content="Удалить"
+                    Command="{Binding DeletePerson}"/>
+        </StackPanel>
+        <ListView ItemsSource="{Binding ListPersonDpo}"
+                  SelectedItem="{Binding SelectedPersonDpo}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Код" Width="50" 
+                                        DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Фамилия" Width="150"
+                                        DisplayMemberBinding="{Binding LastName, Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"/>
+                    <GridViewColumn Header="Имя" Width="100"
+                                        DisplayMemberBinding="{Binding FirstName, Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"/>
+                    <GridViewColumn Header="Должность" Width="100"
+                                        DisplayMemberBinding="{Binding RoleName, Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"/>
+                    <GridViewColumn Header="Дата рождения" 
+                                        DisplayMemberBinding="{Binding Birthday, 
+                                        StringFormat={}{0:dd\.}{0:MM\.}{0:yyyy}, Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</Window>
